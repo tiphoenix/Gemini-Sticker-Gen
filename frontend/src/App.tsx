@@ -190,8 +190,9 @@ const App: React.FC = () => {
   return (
     <div className="app-container">
       <header>
-        <h1>Sticker Gen</h1>
-        <p>Convert any image into a 200x200mm print-ready sticker with a vector contour cutline.</p>
+        <h1>Custom Sticker Generator | Simple Print</h1>
+        <p>Convert any image into a print-ready PDF sticker with a vector contour cutline.</p>
+        <span className="tooltip-bounce">Drag and select your subject for better accuracy!</span>
       </header>
 
       <main className="main-content">
@@ -351,6 +352,10 @@ const App: React.FC = () => {
           ))}
         </div>
       </div>
+      
+      <footer style={{ textAlign: 'center', marginTop: '2rem', padding: '1rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+        Tool by Simple Print
+      </footer>
     </div>
   );
 };
