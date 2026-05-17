@@ -2,7 +2,7 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import ReactCrop, { type Crop } from 'react-image-crop';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Upload, Download, Scissors, RefreshCw, Wand2 } from 'lucide-react';
+import { Upload, Download, RefreshCw, Wand2 } from 'lucide-react';
 import './index.css';
 
 const App: React.FC = () => {
