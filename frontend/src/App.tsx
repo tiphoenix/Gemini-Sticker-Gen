@@ -157,7 +157,8 @@ const App: React.FC = () => {
       formData.append('alphaThreshold', alphaThreshold.toString());
 
       addLog(`Sending POST to /api/generate-pdf with margin: ${margin}mm, alpha: ${alphaThreshold}`);
-      const response = await fetch('http://localhost:3001/api/generate-pdf', {
+      const apiUrl = import.meta.env.PROD ? '/api/generate-pdf' : 'http://localhost:3001/api/generate-pdf';
+      const response = await fetch(apiUrl, {
         method: 'POST',
         body: formData,
       });

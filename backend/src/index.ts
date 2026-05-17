@@ -5,12 +5,16 @@ import { removeBackground } from '@imgly/background-removal-node';
 import { PNG } from 'pngjs';
 import potrace from 'potrace';
 import PDFDocument from 'pdfkit';
+import path from 'path';
 
 const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
+
+// Serve API endpoints
+
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -190,6 +194,16 @@ app.post('/api/generate-pdf', upload.single('image'), async (req, res) => {
     res.status(500).json({ error: 'Failed to generate PDF' });
   }
 });
+
+// Serve frontend in production
+if (process.env.NODE_ENV === 'production') {
+  const frontendDistPath = path.join(__dirname, '../../frontend/dist');
+  app.use(express.static(frontendDistPath));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(frontendDistPath, 'index.html'));
+  });
+}
 
 app.listen(port, () => {
   console.log(`Backend server running on http://localhost:${port}`);
